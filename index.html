@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rak Novel Rakha | Novel Reader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="read-progress" id="readProgress"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Kembali ke rak buku">
+      <span class="brand-mark">R</span>
+      <span>
+        <strong id="siteTitle">Rak Novel</strong>
+        <small>Simple Novel Reader</small>
+      </span>
+    </a>
+
+    <nav class="header-nav" aria-label="Navigasi utama">
+      <button class="nav-btn" id="homeBtn" type="button">Rak Buku</button>
+      <button class="nav-btn" id="continueBtn" type="button">Lanjutkan</button>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Ganti tema">☾</button>
+    </nav>
+  </header>
+
+  <main class="app-shell">
+    <section class="shelf-view" id="shelfView">
+      <div class="shelf-hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Digital Bookshelf</p>
+          <h1>Rak novel original yang rapi dan nyaman dibaca.</h1>
+          <p id="siteSubtitle" class="hero-subtitle">Pilih novel, buka chapter, lalu lanjutkan bacaan terakhir tanpa tampilan yang ramai.</p>
+        </div>
+
+        <div class="hero-panel">
+          <label for="bookSearch">Cari novel</label>
+          <div class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="bookSearch" type="search" placeholder="Judul, genre, sinopsis..." autocomplete="off" />
+          </div>
+          <p>Sekarang rak ini berisi Helena dan The Grail of Names. Tampilan dibuat sederhana agar fokus ke membaca.</p>
+        </div>
+      </div>
+
+      <section class="section-head">
+        <div>
+          <p class="eyebrow">Library</p>
+          <h2>Koleksi Novel</h2>
+        </div>
+        <span id="bookCount" class="soft-pill">0 novel</span>
+      </section>
+
+      <div class="book-shelf" id="bookShelf" aria-label="Rak koleksi novel"></div>
+    </section>
+
+    <section class="book-view" id="bookView" hidden>
+      <button class="back-link" id="backToShelf" type="button">← Kembali ke Rak Buku</button>
+
+      <div class="book-detail">
+        <aside class="detail-cover-wrap">
+          <img id="detailCover" class="detail-cover" src="assets/default-cover.svg" alt="Sampul novel" />
+        </aside>
+
+        <div class="detail-main">
+          <p class="eyebrow" id="detailStatus">Novel</p>
+          <h1 id="detailTitle">Judul Novel</h1>
+          <p class="detail-subtitle" id="detailSubtitle"></p>
+          <p class="detail-synopsis" id="detailSynopsis"></p>
+
+          <div class="tag-row" id="detailTags"></div>
+          <div class="stat-row" id="detailStats"></div>
+
+          <div class="detail-actions">
+            <button class="primary-btn" id="readFirstBtn" type="button">Mulai Baca</button>
+            <button class="secondary-btn" id="readSavedBtn" type="button">Lanjutkan Novel Ini</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="lore-wrap" id="loreWrap" hidden>
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow">World Notes</p>
+            <h2>Catatan Dunia</h2>
+          </div>
+        </div>
+        <div class="lore-grid" id="loreGrid"></div>
+      </section>
+
+      <section class="chapter-library">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow">Chapter List</p>
+            <h2>Arc & Chapter</h2>
+          </div>
+          <div class="chapter-search">
+            <input id="chapterSearch" type="search" placeholder="Cari chapter..." autocomplete="off" />
+          </div>
+        </div>
+        <div class="arc-list" id="detailArcList"></div>
+      </section>
+    </section>
+
+    <section class="reader-view" id="readerView" hidden>
+      <aside class="reader-sidebar" id="readerSidebar">
+        <div class="reader-side-top">
+          <button class="back-link compact-link" id="readerBackBtn" type="button">← Detail Novel</button>
+          <div>
+            <span class="side-label">Chapter</span>
+            <strong id="readerNovelTitle">Novel</strong>
+          </div>
+          <input id="readerChapterSearch" type="search" placeholder="Cari chapter..." autocomplete="off" />
+        </div>
+        <div class="reader-chapter-list" id="readerChapterList"></div>
+      </aside>
+
+      <article class="reader-paper">
+        <div class="reader-toolbar">
+          <div>
+            <p class="eyebrow" id="readerArc">Arc</p>
+            <h1 id="readerTitle">Chapter Title</h1>
+            <p class="chapter-meta" id="chapterMeta"></p>
+          </div>
+          <div class="reader-tools" aria-label="Pengaturan baca">
+            <button class="icon-btn" id="fontDown" type="button" aria-label="Perkecil font">A−</button>
+            <button class="icon-btn" id="fontUp" type="button" aria-label="Perbesar font">A+</button>
+          </div>
+        </div>
+
+        <div class="status-banner" id="statusBanner" hidden></div>
+        <div class="chapter-body" id="chapterBody" lang="en"></div>
+
+        <div class="reader-nav">
+          <button class="secondary-btn" id="prevChapter" type="button">← Sebelumnya</button>
+          <button class="primary-btn" id="nextChapter" type="button">Berikutnya →</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <button class="floating-menu" id="mobileChapterBtn" type="button" aria-label="Buka daftar chapter">☰</button>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
