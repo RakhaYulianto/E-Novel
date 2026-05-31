@@ -62,6 +62,7 @@ function normalizeNovel(novel, index) {
     statusLabel: novel.statusLabel || statusLabel(novel.status || 'full'),
     cover: novel.cover || 'assets/default-cover.svg',
     tags: Array.isArray(novel.tags) ? novel.tags : [novel.language || 'Novel'],
+    sectionLabel: novel.sectionLabel || 'Arc',
     arcs,
     stats
   };
@@ -181,7 +182,7 @@ function renderBook(book) {
 
   $('#detailTags').innerHTML = (book.tags || []).map(tag => `<span>${escapeHTML(tag)}</span>`).join('');
   $('#detailStats').innerHTML = [
-    ['Arc', book.stats?.arcs ?? book.arcs.length],
+    [book.sectionLabel || 'Arc', book.stats?.arcs ?? book.arcs.length],
     ['Chapter', book.stats?.chapters ?? state.chapters.length],
     ['Full', book.stats?.fullChapters ?? state.chapters.filter(ch => ch.status === 'full').length]
   ].map(([label, value]) => `<div><strong>${escapeHTML(value)}</strong><span>${label}</span></div>`).join('');
@@ -208,7 +209,7 @@ function renderBookChapters(book, targetSelector, compact = false) {
       <section class="arc-card ${compact ? 'compact-arc' : ''}">
         <div class="arc-heading">
           <div>
-            <p class="eyebrow">Arc ${escapeHTML(arc.number ?? '')}</p>
+            <p class="eyebrow">${escapeHTML(book.sectionLabel || 'Arc')} ${escapeHTML(arc.number ?? '')}</p>
             <h3>${escapeHTML(arc.title || 'Untitled Arc')}</h3>
             ${compact ? '' : `<p>${escapeHTML(arc.subtitle || '')}</p>`}
           </div>
@@ -275,7 +276,7 @@ function showReader(bookId, chapterId, pushHash = true) {
   const chapter = state.chapters[index];
 
   $('#readerNovelTitle').textContent = book.title;
-  $('#readerArc').textContent = `Arc ${chapter.arc?.number ?? ''}`;
+  $('#readerArc').textContent = `${book.sectionLabel || 'Arc'} ${chapter.arc?.number ?? ''}`;
   $('#readerTitle').textContent = `${chapter.label || `Chapter ${chapter.number}`}: ${chapter.title || 'Untitled Chapter'}`;
   $('#chapterMeta').textContent = `${chapter.arc?.title || 'Untitled Arc'} · ${readingTime(chapter)} · ${wordCount(chapter).toLocaleString('id-ID')} kata`;
 
@@ -288,11 +289,24 @@ function showReader(bookId, chapterId, pushHash = true) {
   }
 
   const languageText = [book.language, ...(book.tags || [])].join(' ').toLowerCase();
-  $('#chapterBody').setAttribute('lang', languageText.includes('indonesia') || languageText.includes('indonesian') ? 'id' : 'en');
-  $('#chapterBody').innerHTML = (chapter.content || [])
+  const chapterBody = $('#chapterBody');
+  chapterBody.setAttribute('lang', languageText.includes('indonesia') || languageText.includes('indonesian') ? 'id' : 'en');
+  chapterBody.className = `chapter-body book-${slugify(book.id)}`;
+  const chapterPieces = [];
+  if (chapter.summary) {
+    chapterPieces.push(`<p class="chapter-kicker">${formatInline(chapter.summary)}</p>`);
+  }
+  (chapter.content || [])
     .filter(paragraph => String(paragraph).trim())
-    .map(paragraph => `<p>${formatInline(paragraph)}</p>`)
-    .join('');
+    .forEach(paragraph => {
+      const value = String(paragraph).trim();
+      if (/^\*\s*\*\s*\*$/.test(value)) {
+        chapterPieces.push('<div class="scene-break" aria-hidden="true">* * *</div>');
+      } else {
+        chapterPieces.push(`<p>${formatInline(value)}</p>`);
+      }
+    });
+  chapterBody.innerHTML = chapterPieces.join('');
 
   $('#prevChapter').disabled = index === 0;
   $('#nextChapter').disabled = index === state.chapters.length - 1;
@@ -435,6 +449,7 @@ function escapeAttr(value) {
 function formatInline(value) {
   const safe = escapeHTML(value);
   return safe
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
     .replace(/\[([^\]]+)\]/g, '<span class="spell">$1</span>')
     .replace(/“([^”]+)”/g, '“<span class="dialogue">$1</span>”')
     .replace(/&quot;([^&]+)&quot;/g, '&quot;<span class="dialogue">$1</span>&quot;');

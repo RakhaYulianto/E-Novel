@@ -1,21 +1,17 @@
-Rak Novel Rakha
+Rak Novel Rakha — Jeda dan Spasi Added
 
-Website rak novel statis untuk membaca koleksi novel original.
+Isi rak:
+1. Helena — Arc 1–11
+2. The Grail of Names — Chapter 1–24
+3. Blessed by Love, Cursed by Fate — Chapter 1–32
+4. Jeda dan Spasi — Bab 1–55
 
-Isi terbaru:
-- Helena: Arc 1-11, sampai Chapter 530 + Prologue.
-- The Grail of Names: Chapter 1-24 versi revised.
-- Blessed by Love, Cursed by Fate: 32 chapter.
-- Pertunangan yang Tidak Kami Minta: 55 chapter, romance slow-burn kampus luar negeri.
+Perubahan versi ini:
+- Novel "Pertunangan yang Tidak Kami Minta" diganti dengan "Jeda dan Spasi".
+- Isi Jeda dan Spasi diambil dari file PDF yang diberikan.
+- Reader Jeda dan Spasi dibuat mengikuti rasa PDF: pembuka bab sebagai italic kicker, scene break, drop cap awal bab, dan font serif yang tenang.
 
 Cara pakai:
 1. Ekstrak ZIP.
 2. Buka index.html di browser.
-3. Pilih novel dari rak, lalu pilih chapter untuk membaca.
-
-File utama:
-- index.html
-- style.css
-- script.js
-- data.js
-- assets/
+3. Untuk upload ke GitHub Pages, unggah seluruh isi folder ini ke repository.
