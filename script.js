@@ -243,6 +243,7 @@ function showShelf(pushHash = true) {
   showOnly('shelf');
   state.currentNovel = null;
   state.currentIndex = -1;
+  delete document.body.dataset.readerBook;
   $('#mobileChapterBtn').classList.remove('visible');
   if (pushHash) history.pushState(null, '', '#home');
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -258,6 +259,7 @@ function showBook(bookId, pushHash = true) {
 
   renderBook(book);
   showOnly('book');
+  delete document.body.dataset.readerBook;
   $('#mobileChapterBtn').classList.remove('visible');
   if (pushHash) history.pushState(null, '', `#book/${encodeURIComponent(book.id)}`);
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -276,7 +278,7 @@ function showReader(bookId, chapterId, pushHash = true) {
   const chapter = state.chapters[index];
 
   $('#readerNovelTitle').textContent = book.title;
-  $('#readerArc').textContent = `${book.sectionLabel || 'Arc'} ${chapter.arc?.number ?? ''}`;
+  $('#readerArc').textContent = chapter.eyebrow || `${book.sectionLabel || 'Arc'} ${chapter.arc?.number ?? ''}`;
   $('#readerTitle').textContent = `${chapter.label || `Chapter ${chapter.number}`}: ${chapter.title || 'Untitled Chapter'}`;
   $('#chapterMeta').textContent = `${chapter.arc?.title || 'Untitled Arc'} · ${readingTime(chapter)} · ${wordCount(chapter).toLocaleString('id-ID')} kata`;
 
@@ -289,6 +291,7 @@ function showReader(bookId, chapterId, pushHash = true) {
   }
 
   const languageText = [book.language, ...(book.tags || [])].join(' ').toLowerCase();
+  document.body.dataset.readerBook = slugify(book.id);
   const chapterBody = $('#chapterBody');
   chapterBody.setAttribute('lang', languageText.includes('indonesia') || languageText.includes('indonesian') ? 'id' : 'en');
   chapterBody.className = `chapter-body book-${slugify(book.id)}`;

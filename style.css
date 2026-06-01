@@ -458,7 +458,7 @@ button:disabled { cursor: not-allowed; opacity: 0.45; }
 .detail-synopsis, .hero-subtitle { text-align: justify; text-justify: inter-word; }
 
 
-/* Jeda dan Spasi: PDF-inspired calm reader style */
+/* Spasi dan Jeda: calm romance reader style */
 .chapter-kicker {
   margin: 0 auto 1.75rem !important;
   max-width: 60ch;
@@ -480,11 +480,11 @@ button:disabled { cursor: not-allowed; opacity: 0.45; }
   user-select: none;
 }
 .chapter-body em { font-style: italic; }
-.chapter-body.book-jeda-dan-spasi {
+.chapter-body.book-spasi-dan-jeda {
   max-width: 72ch;
   line-height: 1.96;
 }
-.chapter-body.book-jeda-dan-spasi .chapter-kicker + p::first-letter {
+.chapter-body.book-spasi-dan-jeda p:first-child::first-letter {
   float: left;
   font-size: 3.8em;
   line-height: 0.82;
@@ -492,9 +492,62 @@ button:disabled { cursor: not-allowed; opacity: 0.45; }
   color: var(--accent-deep);
   font-weight: 700;
 }
-.chapter-body.book-jeda-dan-spasi p {
+.chapter-body.book-spasi-dan-jeda p {
   margin-bottom: 1.32em;
 }
-body.dark .chapter-body.book-jeda-dan-spasi .chapter-kicker + p::first-letter {
+body.dark .chapter-body.book-spasi-dan-jeda p:first-child::first-letter {
   color: var(--accent);
+}
+
+
+/* The World Beneath The Lies: dark fantasy reader style */
+body[data-reader-book="the-world-beneath-the-lies"] .reader-paper {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--paper) 98%, #ffffff 2%), var(--paper));
+}
+body[data-reader-book="the-world-beneath-the-lies"] .reader-paper h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+body[data-reader-book="the-world-beneath-the-lies"] #readerArc {
+  color: #8e3131;
+}
+.chapter-body.book-the-world-beneath-the-lies {
+  max-width: 72ch;
+  font-family: "Literata", Georgia, serif;
+  line-height: 2.02;
+  letter-spacing: 0.004em;
+}
+.chapter-body.book-the-world-beneath-the-lies .chapter-kicker {
+  max-width: 58ch;
+  margin: 0 auto 1.85rem !important;
+  color: #6f4b4b;
+  font-family: "Literata", Georgia, serif;
+  font-size: 0.98em;
+  font-style: italic;
+  line-height: 1.72;
+  text-align: center !important;
+}
+.chapter-body.book-the-world-beneath-the-lies p {
+  margin-bottom: 1.28em;
+  text-indent: 2.1em;
+}
+.chapter-body.book-the-world-beneath-the-lies p:first-of-type {
+  text-indent: 0;
+}
+.chapter-body.book-the-world-beneath-the-lies p:first-of-type::first-letter {
+  float: left;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 4.25em;
+  line-height: 0.8;
+  padding-right: 0.12em;
+  padding-top: 0.08em;
+  font-weight: 700;
+  color: #8e3131;
+}
+body.dark .chapter-body.book-the-world-beneath-the-lies .chapter-kicker {
+  color: #c5a6a6;
+}
+body.dark .chapter-body.book-the-world-beneath-the-lies p:first-of-type::first-letter {
+  color: #cf8f8f;
 }
