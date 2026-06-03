@@ -1,20 +1,33 @@
-Rak Novel Rakha
+Rak Novel Rakha — Versi Banyak Novel + Imperium Serial
 
-Versi ini menambahkan novel baru:
+Isi rak:
+- Helena
+- The Grail of Names
+- Blessed by Love, Cursed by Fate
+- Spasi dan Jeda
 - The World Beneath The Lies
+- Imperium of a Million Suns
 
-Catatan pembaruan:
-- Sampul The World Beneath The Lies diambil dari tampilan cover PDF.
-- Gaya baca novel ini dibuat menyesuaikan nuansa PDF: drop cap merah gelap, epigraph miring, serif yang lebih klasik, dan ritme paragraf yang lebih lapang.
-- Novel-novel sebelumnya tetap dipertahankan di rak.
+Update Imperium:
+- Imperium of a Million Suns tampil sebagai serial.
+- Ketika diklik, halaman akan menampilkan pilihan 10 serial.
+- Serial I: The First Void sudah aktif dan berisi 52 chapter revisi bersih.
+- Serial II sampai X masih placeholder/rencana.
 
-Cara pakai:
-1. Buka file index.html di browser.
-2. Pilih novel dari rak.
-3. Lanjutkan membaca dari halaman terakhir kapan saja.
-
-
-Catatan versi no-assets-folder:
-- Semua gambar cover sudah dipindahkan ke folder utama.
+Catatan GitHub Pages:
 - Tidak ada folder assets.
-- Path gambar di data.js dan index.html sudah diperbarui agar cocok saat diupload ke GitHub sebagai file-file sejajar.
+- Semua cover berada sejajar dengan index.html.
+- Upload semua file di folder ini ke root repository GitHub Pages.
+
+File utama:
+- index.html
+- style.css
+- script.js
+- data.js
+- README.txt
+
+
+Background dark-mode fix:
+- Area putih di bawah halaman sudah diperbaiki.
+- html, body, app-shell, dan theme-color sekarang ikut warna tema gelap.
+- Default first paint dibuat dark agar tidak muncul putih saat halaman dibuka.

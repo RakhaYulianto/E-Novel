@@ -1,23 +1,119 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="1400" viewBox="0 0 900 1400">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6f7fa7"/>
-      <stop offset="100%" stop-color="#1d2330"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#202838"/>
+      <stop offset="100%" stop-color="#0d111c"/>
     </linearGradient>
+    <style>
+      .title { font-family: Georgia, 'Times New Roman', serif; font-size: 66px; font-weight: 800; fill: #fffaf3; letter-spacing: 1px; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 28px; fill: #d7d1c6; letter-spacing: 1.1px; }
+      .author { font-family: Arial, sans-serif; font-size: 26px; fill: #dcd4ca; }
+    </style>
   </defs>
-  <rect width="900" height="1400" rx="44" fill="url(#g)"/>
-  <circle cx="720" cy="220" r="92" fill="#e8dcc8" opacity="0.9"/>
-  <circle cx="770" cy="190" r="78" fill="#1d2330" opacity="0.9"/>
-  <rect x="90" y="850" width="360" height="4" rx="2" fill="#b04a4a" opacity="0.85"/>
-  <text x="90" y="260" fill="#f5efe6" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="78">Rak</text>
-  <text x="90" y="330" fill="#f5efe6" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="78">Novel</text>
-  <text x="90" y="404" fill="#d9c9b5" font-family="Georgia, serif" font-style="italic" font-size="34">Simple Reader</text>
-  <g fill="#0d1420" opacity="0.75">
-    <path d="M60 1050 C 75 930, 110 900, 120 800 L160 800 C170 900,205 930,220 1050 Z"/>
-    <path d="M210 1050 C 222 945, 255 910, 266 840 L306 840 C317 910,350 945,362 1050 Z"/>
-    <path d="M370 1050 C 381 920, 420 885, 432 780 L478 780 C488 885,526 920,538 1050 Z"/>
-    <path d="M535 1050 C 545 950, 580 920, 595 830 L639 830 C652 920,687 950,697 1050 Z"/>
-    <path d="M700 1050 C 714 938, 750 910, 760 820 L804 820 C816 910,850 938,864 1050 Z"/>
-  </g>
-  <text x="90" y="1260" fill="#d7d0c6" font-family="Inter, Arial, sans-serif" font-size="28">Rakha Yulianto</text>
+  <rect width="900" height="1400" fill="url(#bg)"/>
+  <circle cx="20" cy="25" r="1" fill="#edf6ff" opacity="0.28"/>
+<circle cx="87" cy="152" r="2" fill="#edf6ff" opacity="0.41"/>
+<circle cx="154" cy="279" r="3" fill="#edf6ff" opacity="0.54"/>
+<circle cx="221" cy="406" r="1" fill="#edf6ff" opacity="0.67"/>
+<circle cx="288" cy="533" r="2" fill="#edf6ff" opacity="0.80"/>
+<circle cx="355" cy="660" r="3" fill="#edf6ff" opacity="0.28"/>
+<circle cx="422" cy="787" r="1" fill="#edf6ff" opacity="0.41"/>
+<circle cx="489" cy="914" r="2" fill="#edf6ff" opacity="0.54"/>
+<circle cx="556" cy="1041" r="3" fill="#edf6ff" opacity="0.67"/>
+<circle cx="623" cy="1168" r="1" fill="#edf6ff" opacity="0.80"/>
+<circle cx="690" cy="1295" r="2" fill="#edf6ff" opacity="0.28"/>
+<circle cx="757" cy="142" r="3" fill="#edf6ff" opacity="0.41"/>
+<circle cx="824" cy="269" r="1" fill="#edf6ff" opacity="0.54"/>
+<circle cx="31" cy="396" r="2" fill="#edf6ff" opacity="0.67"/>
+<circle cx="98" cy="523" r="3" fill="#edf6ff" opacity="0.80"/>
+<circle cx="165" cy="650" r="1" fill="#edf6ff" opacity="0.28"/>
+<circle cx="232" cy="777" r="2" fill="#edf6ff" opacity="0.41"/>
+<circle cx="299" cy="904" r="3" fill="#edf6ff" opacity="0.54"/>
+<circle cx="366" cy="1031" r="1" fill="#edf6ff" opacity="0.67"/>
+<circle cx="433" cy="1158" r="2" fill="#edf6ff" opacity="0.80"/>
+<circle cx="500" cy="1285" r="3" fill="#edf6ff" opacity="0.28"/>
+<circle cx="567" cy="132" r="1" fill="#edf6ff" opacity="0.41"/>
+<circle cx="634" cy="259" r="2" fill="#edf6ff" opacity="0.54"/>
+<circle cx="701" cy="386" r="3" fill="#edf6ff" opacity="0.67"/>
+<circle cx="768" cy="513" r="1" fill="#edf6ff" opacity="0.80"/>
+<circle cx="835" cy="640" r="2" fill="#edf6ff" opacity="0.28"/>
+<circle cx="42" cy="767" r="3" fill="#edf6ff" opacity="0.41"/>
+<circle cx="109" cy="894" r="1" fill="#edf6ff" opacity="0.54"/>
+<circle cx="176" cy="1021" r="2" fill="#edf6ff" opacity="0.67"/>
+<circle cx="243" cy="1148" r="3" fill="#edf6ff" opacity="0.80"/>
+<circle cx="310" cy="1275" r="1" fill="#edf6ff" opacity="0.28"/>
+<circle cx="377" cy="122" r="2" fill="#edf6ff" opacity="0.41"/>
+<circle cx="444" cy="249" r="3" fill="#edf6ff" opacity="0.54"/>
+<circle cx="511" cy="376" r="1" fill="#edf6ff" opacity="0.67"/>
+<circle cx="578" cy="503" r="2" fill="#edf6ff" opacity="0.80"/>
+<circle cx="645" cy="630" r="3" fill="#edf6ff" opacity="0.28"/>
+<circle cx="712" cy="757" r="1" fill="#edf6ff" opacity="0.41"/>
+<circle cx="779" cy="884" r="2" fill="#edf6ff" opacity="0.54"/>
+<circle cx="846" cy="1011" r="3" fill="#edf6ff" opacity="0.67"/>
+<circle cx="53" cy="1138" r="1" fill="#edf6ff" opacity="0.80"/>
+<circle cx="120" cy="1265" r="2" fill="#edf6ff" opacity="0.28"/>
+<circle cx="187" cy="112" r="3" fill="#edf6ff" opacity="0.41"/>
+<circle cx="254" cy="239" r="1" fill="#edf6ff" opacity="0.54"/>
+<circle cx="321" cy="366" r="2" fill="#edf6ff" opacity="0.67"/>
+<circle cx="388" cy="493" r="3" fill="#edf6ff" opacity="0.80"/>
+<circle cx="455" cy="620" r="1" fill="#edf6ff" opacity="0.28"/>
+<circle cx="522" cy="747" r="2" fill="#edf6ff" opacity="0.41"/>
+<circle cx="589" cy="874" r="3" fill="#edf6ff" opacity="0.54"/>
+<circle cx="656" cy="1001" r="1" fill="#edf6ff" opacity="0.67"/>
+<circle cx="723" cy="1128" r="2" fill="#edf6ff" opacity="0.80"/>
+<circle cx="790" cy="1255" r="3" fill="#edf6ff" opacity="0.28"/>
+<circle cx="857" cy="102" r="1" fill="#edf6ff" opacity="0.41"/>
+<circle cx="64" cy="229" r="2" fill="#edf6ff" opacity="0.54"/>
+<circle cx="131" cy="356" r="3" fill="#edf6ff" opacity="0.67"/>
+<circle cx="198" cy="483" r="1" fill="#edf6ff" opacity="0.80"/>
+<circle cx="265" cy="610" r="2" fill="#edf6ff" opacity="0.28"/>
+<circle cx="332" cy="737" r="3" fill="#edf6ff" opacity="0.41"/>
+<circle cx="399" cy="864" r="1" fill="#edf6ff" opacity="0.54"/>
+<circle cx="466" cy="991" r="2" fill="#edf6ff" opacity="0.67"/>
+<circle cx="533" cy="1118" r="3" fill="#edf6ff" opacity="0.80"/>
+<circle cx="600" cy="1245" r="1" fill="#edf6ff" opacity="0.28"/>
+<circle cx="667" cy="92" r="2" fill="#edf6ff" opacity="0.41"/>
+<circle cx="734" cy="219" r="3" fill="#edf6ff" opacity="0.54"/>
+<circle cx="801" cy="346" r="1" fill="#edf6ff" opacity="0.67"/>
+<circle cx="868" cy="473" r="2" fill="#edf6ff" opacity="0.80"/>
+<circle cx="75" cy="600" r="3" fill="#edf6ff" opacity="0.28"/>
+<circle cx="142" cy="727" r="1" fill="#edf6ff" opacity="0.41"/>
+<circle cx="209" cy="854" r="2" fill="#edf6ff" opacity="0.54"/>
+<circle cx="276" cy="981" r="3" fill="#edf6ff" opacity="0.67"/>
+<circle cx="343" cy="1108" r="1" fill="#edf6ff" opacity="0.80"/>
+<circle cx="410" cy="1235" r="2" fill="#edf6ff" opacity="0.28"/>
+<circle cx="477" cy="82" r="3" fill="#edf6ff" opacity="0.41"/>
+<circle cx="544" cy="209" r="1" fill="#edf6ff" opacity="0.54"/>
+<circle cx="611" cy="336" r="2" fill="#edf6ff" opacity="0.67"/>
+<circle cx="678" cy="463" r="3" fill="#edf6ff" opacity="0.80"/>
+<circle cx="745" cy="590" r="1" fill="#edf6ff" opacity="0.28"/>
+<circle cx="812" cy="717" r="2" fill="#edf6ff" opacity="0.41"/>
+<circle cx="879" cy="844" r="3" fill="#edf6ff" opacity="0.54"/>
+<circle cx="86" cy="971" r="1" fill="#edf6ff" opacity="0.67"/>
+<circle cx="153" cy="1098" r="2" fill="#edf6ff" opacity="0.80"/>
+<circle cx="220" cy="1225" r="3" fill="#edf6ff" opacity="0.28"/>
+<circle cx="287" cy="72" r="1" fill="#edf6ff" opacity="0.41"/>
+<circle cx="354" cy="199" r="2" fill="#edf6ff" opacity="0.54"/>
+<circle cx="421" cy="326" r="3" fill="#edf6ff" opacity="0.67"/>
+<circle cx="488" cy="453" r="1" fill="#edf6ff" opacity="0.80"/>
+<circle cx="555" cy="580" r="2" fill="#edf6ff" opacity="0.28"/>
+<circle cx="622" cy="707" r="3" fill="#edf6ff" opacity="0.41"/>
+<circle cx="689" cy="834" r="1" fill="#edf6ff" opacity="0.54"/>
+<circle cx="756" cy="961" r="2" fill="#edf6ff" opacity="0.67"/>
+<circle cx="823" cy="1088" r="3" fill="#edf6ff" opacity="0.80"/>
+<circle cx="30" cy="1215" r="1" fill="#edf6ff" opacity="0.28"/>
+<circle cx="97" cy="62" r="2" fill="#edf6ff" opacity="0.41"/>
+<circle cx="164" cy="189" r="3" fill="#edf6ff" opacity="0.54"/>
+<circle cx="231" cy="316" r="1" fill="#edf6ff" opacity="0.67"/>
+<circle cx="298" cy="443" r="2" fill="#edf6ff" opacity="0.80"/>
+<circle cx="365" cy="570" r="3" fill="#edf6ff" opacity="0.28"/>
+<circle cx="432" cy="697" r="1" fill="#edf6ff" opacity="0.41"/>
+<circle cx="499" cy="824" r="2" fill="#edf6ff" opacity="0.54"/>
+<circle cx="566" cy="951" r="3" fill="#edf6ff" opacity="0.67"/>
+<circle cx="633" cy="1078" r="1" fill="#edf6ff" opacity="0.80"/>
+  <circle cx="450" cy="1160" r="360" fill="none" stroke="#7db2ff" stroke-width="8" opacity=".45"/>
+  <text x="70" y="145" class="subtitle">Original E-Novel Reader</text>
+  <text x="70" y="235" class="title">RAK NOVEL</text>
+  <rect x="70" y="319" width="390" height="4" fill="#9ab2ff" opacity=".9"/>
+  <text x="70" y="1265" class="author">Rakha Yulianto</text>
 </svg>

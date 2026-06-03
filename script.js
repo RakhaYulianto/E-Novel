@@ -60,7 +60,7 @@ function normalizeNovel(novel, index) {
     synopsis: novel.synopsis || 'Sinopsis belum ditambahkan.',
     author: novel.author || 'Unknown Author',
     statusLabel: novel.statusLabel || statusLabel(novel.status || 'full'),
-    cover: novel.cover || 'assets/default-cover.svg',
+    cover: novel.cover || 'default-cover.svg',
     tags: Array.isArray(novel.tags) ? novel.tags : [novel.language || 'Novel'],
     sectionLabel: novel.sectionLabel || 'Arc',
     arcs,
@@ -104,11 +104,24 @@ function bindEvents() {
   });
 
   $('#readFirstBtn').addEventListener('click', () => {
+    if (!state.currentNovel) return;
+    if (state.currentNovel.type === 'series') {
+      const firstAvailable = (state.currentNovel.serials || []).find(serial => serial.bookId);
+      if (firstAvailable) return showBook(firstAvailable.bookId);
+    }
     const first = getChapters(state.currentNovel)[0];
     if (first) showReader(state.currentNovel.id, first.id);
   });
 
   $('#readSavedBtn').addEventListener('click', () => {
+    if (!state.currentNovel) return;
+    if (state.currentNovel.parentSeriesId) {
+      return showBook(state.currentNovel.parentSeriesId);
+    }
+    if (state.currentNovel.type === 'series') {
+      const firstAvailable = (state.currentNovel.serials || []).find(serial => serial.bookId);
+      if (firstAvailable) return showBook(firstAvailable.bookId);
+    }
     const saved = getSavedChapter(state.currentNovel.id);
     const first = getChapters(state.currentNovel)[0];
     if (saved || first) showReader(state.currentNovel.id, saved || first.id);
@@ -137,6 +150,12 @@ function bindEvents() {
       return;
     }
 
+    const serialButton = event.target.closest('[data-serial-book-id]');
+    if (serialButton) {
+      showBook(serialButton.dataset.serialBookId);
+      return;
+    }
+
     const chapterButton = event.target.closest('[data-chapter-id]');
     if (chapterButton && state.currentNovel) {
       showReader(state.currentNovel.id, chapterButton.dataset.chapterId);
@@ -149,7 +168,7 @@ function bindEvents() {
 
 function renderShelf() {
   const query = state.bookQuery.trim().toLowerCase();
-  const books = state.novels.filter(book => bookMatches(book, query));
+  const books = state.novels.filter(book => !book.hidden && bookMatches(book, query));
   $('#bookCount').textContent = `${books.length} novel`;
 
   $('#bookShelf').innerHTML = books.map(book => `
@@ -159,7 +178,7 @@ function renderShelf() {
           <img src="${escapeAttr(book.cover)}" alt="Sampul ${escapeAttr(book.title)}" loading="lazy" />
         </span>
         <span class="book-info">
-          <span class="book-meta">${escapeHTML(book.statusLabel)} · ${escapeHTML(book.stats?.chapters ?? 0)} chapter</span>
+          <span class="book-meta">${escapeHTML(book.statusLabel)} · ${book.type === 'series' ? `${escapeHTML(book.serials?.length ?? 0)} serial` : `${escapeHTML(book.stats?.chapters ?? 0)} chapter`}</span>
           <strong>${escapeHTML(book.title)}</strong>
           <small>${escapeHTML(book.subtitle || book.author)}</small>
         </span>
@@ -181,11 +200,17 @@ function renderBook(book) {
   $('#detailSynopsis').textContent = book.synopsis;
 
   $('#detailTags').innerHTML = (book.tags || []).map(tag => `<span>${escapeHTML(tag)}</span>`).join('');
-  $('#detailStats').innerHTML = [
-    [book.sectionLabel || 'Arc', book.stats?.arcs ?? book.arcs.length],
-    ['Chapter', book.stats?.chapters ?? state.chapters.length],
-    ['Full', book.stats?.fullChapters ?? state.chapters.filter(ch => ch.status === 'full').length]
-  ].map(([label, value]) => `<div><strong>${escapeHTML(value)}</strong><span>${label}</span></div>`).join('');
+  $('#detailStats').innerHTML = book.type === 'series'
+    ? [
+        ['Serial', book.serials?.length ?? 0],
+        ['Tersedia', (book.serials || []).filter(serial => serial.status === 'available').length],
+        ['Chapter', book.stats?.chapters ?? 0]
+      ].map(([label, value]) => `<div><strong>${escapeHTML(value)}</strong><span>${label}</span></div>`).join('')
+    : [
+        [book.sectionLabel || 'Arc', book.stats?.arcs ?? book.arcs.length],
+        ['Chapter', book.stats?.chapters ?? state.chapters.length],
+        ['Full', book.stats?.fullChapters ?? state.chapters.filter(ch => ch.status === 'full').length]
+      ].map(([label, value]) => `<div><strong>${escapeHTML(value)}</strong><span>${label}</span></div>`).join('');
 
   const lore = Array.isArray(book.lore) ? book.lore : [];
   $('#loreWrap').hidden = lore.length === 0;
@@ -196,7 +221,15 @@ function renderBook(book) {
     </article>
   `).join('');
 
-  renderBookChapters(book, '#detailArcList');
+  if (book.type === 'series') {
+    renderSerialOptions(book, '#detailArcList');
+    $('#readFirstBtn').textContent = 'Baca Serial I';
+    $('#readSavedBtn').textContent = 'Lanjutkan Serial I';
+  } else {
+    renderBookChapters(book, '#detailArcList');
+    $('#readFirstBtn').textContent = 'Mulai Baca';
+    $('#readSavedBtn').textContent = book.parentSeriesId ? 'Kembali ke Serial' : 'Lanjutkan Novel Ini';
+  }
 }
 
 function renderBookChapters(book, targetSelector, compact = false) {
@@ -224,6 +257,33 @@ function renderBookChapters(book, targetSelector, compact = false) {
 
   $(targetSelector).innerHTML = html || '<p class="empty-state">Tidak ada chapter yang cocok.</p>';
   markActiveChapter();
+}
+
+
+function renderSerialOptions(series, targetSelector) {
+  const query = state.chapterQuery.trim().toLowerCase();
+  const serials = (series.serials || []).filter(serial => {
+    if (!query) return true;
+    return [serial.number, serial.title, serial.subtitle, serial.statusLabel].join(' ').toLowerCase().includes(query);
+  });
+
+  $(targetSelector).innerHTML = `
+    <div class="serial-selection">
+      ${serials.map(serial => `
+        <article class="serial-option ${serial.status === 'planned' ? 'planned' : ''}">
+          <button type="button" ${serial.bookId ? `data-serial-book-id="${escapeAttr(serial.bookId)}"` : 'disabled'}>
+            <img src="${escapeAttr(serial.cover || series.cover)}" alt="Cover ${escapeAttr(serial.title)}" loading="lazy" />
+            <span>
+              <small>Serial ${escapeHTML(serial.number)} · ${escapeHTML(serial.statusLabel || serial.status)}</small>
+              <strong>${escapeHTML(serial.title)}</strong>
+              <em>${escapeHTML(serial.subtitle || '')}</em>
+              <b>${escapeHTML(serial.chapters || 0)} chapter</b>
+            </span>
+          </button>
+        </article>
+      `).join('')}
+    </div>
+  ` || '<p class="empty-state">Tidak ada serial yang cocok.</p>';
 }
 
 function renderChapterButton(chapter, compact = false) {
@@ -370,7 +430,7 @@ function continueGlobalReading() {
       if (parsed.bookId && parsed.chapterId) return showReader(parsed.bookId, parsed.chapterId);
     } catch (_) {}
   }
-  const firstBook = state.novels[0];
+  const firstBook = state.novels.find(book => !book.hidden && book.type !== 'series');
   const firstChapter = getChapters(firstBook)[0];
   if (firstBook && firstChapter) showReader(firstBook.id, firstChapter.id);
 }
@@ -413,17 +473,24 @@ function setFontSize(size) {
   localStorage.setItem(storageKey('font-size'), state.fontSize);
 }
 
+function applyTheme(isDark) {
+  document.documentElement.classList.toggle('dark', isDark);
+  document.body.classList.toggle('dark', isDark);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', isDark ? '#10100f' : '#f4f0e8');
+  $('#themeToggle').textContent = isDark ? '☀' : '☾';
+}
+
 function restoreTheme() {
   const theme = localStorage.getItem(storageKey('theme'));
-  if (theme === 'dark') document.body.classList.add('dark');
-  $('#themeToggle').textContent = document.body.classList.contains('dark') ? '☀' : '☾';
+  const isDark = theme !== 'light';
+  applyTheme(isDark);
 }
 
 function toggleTheme() {
-  document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
+  const isDark = !document.body.classList.contains('dark');
   localStorage.setItem(storageKey('theme'), isDark ? 'dark' : 'light');
-  $('#themeToggle').textContent = isDark ? '☀' : '☾';
+  applyTheme(isDark);
 }
 
 function updateProgress() {

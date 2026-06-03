@@ -1,23 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="1400" viewBox="0 0 900 1400">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1a2440"/>
-      <stop offset="100%" stop-color="#0a1220"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#172036"/>
+      <stop offset="100%" stop-color="#080b13"/>
     </linearGradient>
+    <style>
+      .title { font-family: Georgia, 'Times New Roman', serif; font-size: 66px; font-weight: 800; fill: #fffaf3; letter-spacing: 1px; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 28px; fill: #d7d1c6; letter-spacing: 1.1px; }
+      .author { font-family: Arial, sans-serif; font-size: 26px; fill: #dcd4ca; }
+    </style>
   </defs>
-  <rect width="900" height="1400" rx="44" fill="url(#g)"/>
-  <circle cx="720" cy="220" r="92" fill="#e8dcc8" opacity="0.9"/>
-  <circle cx="770" cy="190" r="78" fill="#0a1220" opacity="0.9"/>
-  <rect x="90" y="850" width="360" height="4" rx="2" fill="#b04a4a" opacity="0.85"/>
-  <text x="90" y="260" fill="#f5efe6" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="78">Helena</text>
-  <text x="90" y="330" fill="#f5efe6" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="78"> </text>
-  <text x="90" y="404" fill="#d9c9b5" font-family="Georgia, serif" font-style="italic" font-size="34">The Ancient Sage Returns After 5,000 Years</text>
-  <g fill="#0d1420" opacity="0.75">
-    <path d="M60 1050 C 75 930, 110 900, 120 800 L160 800 C170 900,205 930,220 1050 Z"/>
-    <path d="M210 1050 C 222 945, 255 910, 266 840 L306 840 C317 910,350 945,362 1050 Z"/>
-    <path d="M370 1050 C 381 920, 420 885, 432 780 L478 780 C488 885,526 920,538 1050 Z"/>
-    <path d="M535 1050 C 545 950, 580 920, 595 830 L639 830 C652 920,687 950,697 1050 Z"/>
-    <path d="M700 1050 C 714 938, 750 910, 760 820 L804 820 C816 910,850 938,864 1050 Z"/>
-  </g>
-  <text x="90" y="1260" fill="#d7d0c6" font-family="Inter, Arial, sans-serif" font-size="28">Rakha Yulianto</text>
+  <rect width="900" height="1400" fill="url(#bg)"/>
+  <circle cx="700" cy="205" r="92" fill="#d8c899"/><circle cx="758" cy="176" r="86" fill="#162034"/>
+  <path d="M80 940 C160 805 230 800 290 930 C360 810 480 790 560 950 C645 820 740 850 820 970 L820 1400 L80 1400 Z" fill="#0c1421" opacity=".65"/><rect x="70" y="650" width="380" height="4" fill="#b94b4b"/>
+  <text x="70" y="145" class="subtitle">Original Fantasy Novel</text>
+  <text x="70" y="235" class="title">HELENA</text>
+  <rect x="70" y="319" width="390" height="4" fill="#9ab2ff" opacity=".9"/>
+  <text x="70" y="1265" class="author">Rakha Yulianto</text>
 </svg>
