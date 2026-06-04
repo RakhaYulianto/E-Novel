@@ -111,7 +111,7 @@
 <circle cx="499" cy="824" r="2" fill="#edf6ff" opacity="0.54"/>
 <circle cx="566" cy="951" r="3" fill="#edf6ff" opacity="0.67"/>
 <circle cx="633" cy="1078" r="1" fill="#edf6ff" opacity="0.80"/>
-  <circle cx="450" cy="1160" r="360" fill="none" stroke="#7db2ff" stroke-width="8" opacity=".45"/>
+  <circle cx="450" cy="1160" r="360" fill="none" stroke="#7db2ff" stroke-width="8" opacity=".45"/><path d="M450 440 L405 590 L450 552 L495 590 Z" fill="#f4f8ff"/><path d="M424 600 L476 600 L456 725 L444 725 Z" fill="#ffb140"/>
   <text x="70" y="145" class="subtitle">Original E-Novel Reader</text>
   <text x="70" y="235" class="title">RAK NOVEL</text>
   <rect x="70" y="319" width="390" height="4" fill="#9ab2ff" opacity=".9"/>

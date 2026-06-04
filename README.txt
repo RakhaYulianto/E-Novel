@@ -31,3 +31,9 @@ Background dark-mode fix:
 - Area putih di bawah halaman sudah diperbaiki.
 - html, body, app-shell, dan theme-color sekarang ikut warna tema gelap.
 - Default first paint dibuat dark agar tidak muncul putih saat halaman dibuka.
+
+
+Update Imperium Final PDF:
+- Isi Imperium of a Million Suns I: The First Void sudah diganti memakai PDF "Revisi Bersih Final Draft".
+- Total tetap 52 chapter, dibagi menjadi 4 Act.
+- Serial II–X tetap placeholder/rencana.
